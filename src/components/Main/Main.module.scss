@@ -1,0 +1,17 @@
+.main {
+  position: relative;
+  height: 100vh;
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: 5fr 2fr;
+  padding-top: 10px;
+}
+
+.bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  padding: 0 1em;
+}

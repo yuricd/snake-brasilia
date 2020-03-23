@@ -1,0 +1,11 @@
+.main {
+  position: relative;
+}
+
+.canvas {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 1px solid #FFB800;
+  margin: 0 auto;
+}

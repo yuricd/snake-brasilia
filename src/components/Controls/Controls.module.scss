@@ -1,0 +1,39 @@
+
+.controls {
+  display: grid;
+  grid-template-columns: [leftCol] 1fr [centerCol] 1fr [rightCol] 1fr;
+  grid-template-rows: [topRow] 1fr [middleRow] 1fr [bottomRow] 1fr;
+  height: 20vh;
+}
+
+.item button {
+  background: none;
+  /* border: 3px solid #FFB800; */
+  color: #FFB800;
+  font-size: 2.2rem;
+  width: 34px;
+  height: 34px;
+  text-align: center;
+  margin: -6px 1px;
+}
+
+.up {
+  grid-row-start: topRow;
+  grid-column-start: centerCol;
+}
+
+.right {
+  grid-row-start: middleRow;
+  grid-column-start: rightCol;
+}
+
+
+.down {
+  grid-row-start: bottomRow;
+  grid-column-start: centerCol;
+}
+
+.left {
+  grid-row-start: middleRow;
+  grid-column-start: leftCol;
+}
