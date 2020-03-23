@@ -37,15 +37,11 @@ export const useSnake = ({ canvas }) => {
     e => {
       if (e.keyCode === 37 && state.direction !== "right") {
         setState({ direction: "left" });
-        console.log("resetou1");
       } else if (e.keyCode === 38 && state.direction !== "down") {
-        console.log("resetou2");
         setState({ direction: "up" });
       } else if (e.keyCode === 39 && state.direction !== "left") {
-        console.log("resetou3");
         setState({ direction: "right" });
       } else if (e.keyCode === 40 && state.direction !== "up") {
-        console.log("resetou4");
         setState({ direction: "down" });
       }
     },
@@ -62,13 +58,9 @@ export const useSnake = ({ canvas }) => {
   useLayoutEffect(() => {
     const interval = setInterval(() => {
       if (canvas && canvas.current) {
-        setState({
-          width: canvas.current.width,
-          height: canvas.current.height,
-          ctx: canvas.current.getContext("2d"),
-          current: getPolit(),
-        });
-
+        const ctx = canvas.current.getContext("2d");
+        const width = canvas.current.width;
+        const height = canvas.current.height;
         draw(ctx, width, height);
       }
     }, 70);
@@ -76,13 +68,25 @@ export const useSnake = ({ canvas }) => {
     return () => clearInterval(interval);
   });
 
-  function drawSnake(x, y, head) {
+  useEffect(() => {
+    if (canvas && canvas.current) {
+      const width = canvas.current.width;
+      const height = canvas.current.height;
+      
+    setState({
+      current: getPolit(width, height),
+    });
+  }
+
+  }, []);
+
+  function drawSnake(ctx, x, y, head) {
     let headImg = new Image();
 
     if (head && state.direction === "right") {
       console.log("1");
       headImg.src = snakeRight;
-      state.ctx.drawImage(
+      ctx.drawImage(
         headImg,
         x * state.snakeW - 2,
         y * state.snakeH - 8,
@@ -93,7 +97,7 @@ export const useSnake = ({ canvas }) => {
       console.log("2");
 
       headImg.src = snakeLeft;
-      state.ctx.drawImage(
+      ctx.drawImage(
         headImg,
         x * state.snakeW - 24,
         y * state.snakeH - 8,
@@ -104,7 +108,7 @@ export const useSnake = ({ canvas }) => {
       console.log("3");
 
       headImg.src = snakeUp;
-      state.ctx.drawImage(
+      ctx.drawImage(
         headImg,
         x * state.snakeW - 8,
         y * state.snakeH - 24,
@@ -115,7 +119,7 @@ export const useSnake = ({ canvas }) => {
       console.log("4");
 
       headImg.src = snakeDown;
-      state.ctx.drawImage(
+      ctx.drawImage(
         headImg,
         x * state.snakeW - 3,
         y * state.snakeH - 2,
@@ -123,8 +127,8 @@ export const useSnake = ({ canvas }) => {
         34
       );
     } else {
-      state.ctx.fillStyle = "#FFB800";
-      state.ctx.fillRect(
+      ctx.fillStyle = "#FFB800";
+      ctx.fillRect(
         x * state.snakeW,
         y * state.snakeH,
         state.snakeW,
@@ -140,7 +144,7 @@ export const useSnake = ({ canvas }) => {
       x >= state.width / state.snakeW ||
       y >= state.height / state.snakeH
     ) {
-      alert("colidiu");
+      console.log("colidiu");
     }
     // for (let i=1; i<array.length; i++) {
     //   if(x === array[i].x && y === array[i].y) {
@@ -150,48 +154,48 @@ export const useSnake = ({ canvas }) => {
     return false;
   }
 
-  function getPolit() {
+  function getPolit(width, height) {
     return {
       data: state.polits ? state.polits[0] : data[0],
       pos: {
-        x: Math.round(Math.random() * (state.width / state.snakeW)),
-        y: Math.round(Math.random() * (state.height / state.snakeH))
+        x: Math.round(Math.random() * (width / state.snakeW)),
+        y: Math.round(Math.random() * (height / state.snakeH))
       }
     };
   }
 
-  function drawPolit(renderImg, x, y) {
-    state.ctx.shadowOffsetX = 0;
-    state.ctx.shadowOffsetY = 0;
-    state.ctx.shadowBlur = 1;
-    state.ctx.shadowColor = "rgba(255, 255, 255, 1)";
-    state.ctx.drawImage(
+  function drawPolit(ctx, renderImg, x, y) {
+    ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetY = 0;
+    ctx.shadowBlur = 1;
+    ctx.shadowColor = "rgba(255, 255, 255, 1)";
+    ctx.drawImage(
       renderImg,
       x * state.snakeW - 4,
       y * state.snakeH - 4,
       state.snakeW + 8,
       state.snakeH + 8
     );
-    state.ctx.shadowColor = "rgba(255, 255, 255, 0)";
+    ctx.shadowColor = "rgba(255, 255, 255, 0)";
   }
 
-  function draw() {
+  function draw(ctx, width, height) {
     if (!state.current?.data) {
       console.log("end");
     } else if (state.paused) {
       console.log("paused");
     } else {
-      state.ctx.clearRect(0, 0, state.width, state.height);
+      ctx.clearRect(0, 0, width, height);
 
       for (let i = 0; i < state.body.length; i++) {
         let x = state.body[i].x;
         let y = state.body[i].y;
-        drawSnake(x, y, i === 0);
+        drawSnake(ctx, x, y, i === 0);
       }
-
+      
       let renderImg = new Image();
       renderImg.src = state.current.data.image;
-      drawPolit(renderImg, state.current.pos.x, state.current.pos.y);
+      drawPolit(ctx, renderImg, state.current.pos.x, state.current.pos.y);
 
       let snakeHeadX = state.body[0].x;
       let snakeHeadY = state.body[0].y;
@@ -213,7 +217,7 @@ export const useSnake = ({ canvas }) => {
         snakeHeadY === state.current.pos.y
       ) {
         state.polits.shift();
-        state.current = getPolit();
+        state.current = getPolit(width, height);
         state.setScore(state.current.data.salary);
         state.eatCallback(state.score);
         state.paused = true;
