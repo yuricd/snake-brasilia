@@ -12,8 +12,9 @@ function reducer(res, newElement) {
   };
 }
 
-export const useSnake = ({ canvas }) => {
+export const useSnake = ({ canvas, eatCallback }) => {
   let cpBody = [];
+
   for (let i = 19; i >= 0; i--) {
     cpBody.push({
       x: i,
@@ -69,22 +70,20 @@ export const useSnake = ({ canvas }) => {
   });
 
   useEffect(() => {
-    if (canvas && canvas.current) {
+    if (canvas?.current) {
       const width = canvas.current.width;
       const height = canvas.current.height;
       
-    setState({
-      current: getPolit(width, height),
-    });
-  }
-
+      setState({
+        current: getPolit(width, height),
+      });
+    }
   }, []);
 
   function drawSnake(ctx, x, y, head) {
     let headImg = new Image();
 
     if (head && state.direction === "right") {
-      console.log("1");
       headImg.src = snakeRight;
       ctx.drawImage(
         headImg,
@@ -94,8 +93,6 @@ export const useSnake = ({ canvas }) => {
         18
       );
     } else if (head && state.direction === "left") {
-      console.log("2");
-
       headImg.src = snakeLeft;
       ctx.drawImage(
         headImg,
@@ -105,8 +102,6 @@ export const useSnake = ({ canvas }) => {
         18
       );
     } else if (head && state.direction === "up") {
-      console.log("3");
-
       headImg.src = snakeUp;
       ctx.drawImage(
         headImg,
@@ -116,8 +111,6 @@ export const useSnake = ({ canvas }) => {
         34
       );
     } else if (head && state.direction === "down") {
-      console.log("4");
-
       headImg.src = snakeDown;
       ctx.drawImage(
         headImg,
@@ -216,11 +209,11 @@ export const useSnake = ({ canvas }) => {
         snakeHeadX === state.current.pos.x &&
         snakeHeadY === state.current.pos.y
       ) {
-        state.polits.shift();
-        state.current = getPolit(width, height);
-        state.setScore(state.current.data.salary);
-        state.eatCallback(state.score);
-        state.paused = true;
+        setState({ polits: state.polits.shift() });
+        setState({ current: getPolit(width, height) });
+        setState({ score: state.current.data.salary });
+        eatCallback(state.score);
+        setPaused(true);
       } else {
         state.body.pop();
       }
@@ -234,12 +227,11 @@ export const useSnake = ({ canvas }) => {
     }
   }
 
+  function setPaused(paused) {
+    setState({ paused });
+  }
+
   return {
-    getPolit,
-    setState,
-    drawSnake,
-    checkCollision,
-    drawPolit,
-    draw
+    current: state.current?.data,
   };
 };

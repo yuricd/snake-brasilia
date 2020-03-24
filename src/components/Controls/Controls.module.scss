@@ -1,18 +1,22 @@
 
+$button-size: 37px;
 .controls {
   display: grid;
-  grid-template-columns: [leftCol] 1fr [centerCol] 1fr [rightCol] 1fr;
-  grid-template-rows: [topRow] 1fr [middleRow] 1fr [bottomRow] 1fr;
-  height: 20vh;
+  grid-template-columns: [leftCol] $button-size [centerCol] $button-size [rightCol] $button-size;
+  grid-template-rows: [topRow] $button-size [middleRow] $button-size [bottomRow] $button-size;
+  height: 100%;
+  align-items: center;
+}
+
+.item {
+  width: $button-size;
+  height: $button-size;
 }
 
 .item button {
   background: none;
-  /* border: 3px solid #FFB800; */
   color: #FFB800;
-  font-size: 2.2rem;
-  width: 34px;
-  height: 34px;
+  font-size: 2.4rem;
   text-align: center;
   margin: -6px 1px;
 }

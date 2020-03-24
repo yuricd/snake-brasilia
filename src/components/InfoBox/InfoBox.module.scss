@@ -1,0 +1,98 @@
+
+$dark-yellow: #593B00;
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  background: #000;
+  opacity: .8;
+  z-index: 10;
+}
+
+.infoBox {
+  z-index: 11;
+  position: absolute;
+  left: 50%;
+  top: 4em;
+  transform: translateX(-50%);
+  width: 80vw;
+  max-width: 500px;
+  max-height: 100vh;
+  background: url('../../assets/images/info-background.png') no-repeat;
+  background-size: 100% 100%; 
+  padding: 1em;
+  text-transform: uppercase;
+}
+
+.header {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -2em;
+  margin-bottom: 1em;
+
+  .summary {
+
+    text-align: center;
+
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 14px;
+    }
+  }
+
+  figure {
+    display: flex;
+    justify-content: center;
+    width: 86px;
+    height: 86px;
+    transform: rotate(-5.03deg);
+    border: 3px solid #FFFFFF;
+    border-radius: 10px;
+    margin-bottom: 1em;
+    overflow: hidden;
+    box-shadow: 2px 4px 4px $dark-yellow;
+
+    img {
+      height: 100%;
+    }
+  }
+}
+
+.skills {
+  font-size: 15px;
+  margin-bottom: 1.5em;
+
+  .display {
+    display: flex;
+    flex-direction: column;
+    
+    .row {
+      display: grid;
+      grid-template-columns: 60% 40%;
+      align-items: center;
+      
+      .val {
+        width: 100%;
+        height: 15px;
+        background: $dark-yellow;
+
+        .bar {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 100%;
+          background: #FFF;
+          text-shadow: none;
+          color: $dark-yellow;
+        }
+      }
+    }
+  }
+}

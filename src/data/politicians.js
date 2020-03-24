@@ -5,20 +5,20 @@ import jeanWyllys from '../assets/politicians/jean-wyllys.jpg';
 export const data = [{
   "name": "Maria do Rosário",
   "image": mariaDoRosario,
-  "description": "Alguma descrição",
+  "description": ["Ganhador do BBB e ex-deputado federal", "Acha que deputado ganha pouco (sic)"],
   "salary": 500000,
   "skills": {
-    "Grito fascita": "80%",
-    "Outra habilidade": "50%",
+    "Grito fascita": ".8",
+    "Outra habilidade": ".5",
   }
 },
 {
   "name": "Jean Wyllys",
   "image": jeanWyllys,
-  "description": "Alguma descrição",
+  "description": ["Ganhador do BBB e ex-deputado federal", "Acha que deputado ganha pouco (sic)"],
   "skills": {
-    "Grito fascita": "80%",
-    "Outra habilidade": "50%",
+    "Grito fascita": ".8",
+    "Outra habilidade": ".5",
   },
   "salary": 300000,
 }]

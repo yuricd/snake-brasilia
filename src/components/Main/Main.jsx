@@ -9,13 +9,15 @@ function Main() {
 
   const [score, setScore] = React.useState(0);
 
+  const bottomHeight = (window.innerHeight/ 3);
+
   return (
     <div className={styles.main}>
       <section className={styles.game}>
         <Game setScore={setScore} />
       </section>
 
-      <section id="bottom" className={styles.bottom}>
+      <section id="bottom" className={styles.bottom} styles={ { height: bottomHeight } }>
         <Score score={score} />
         <Controls />
       </section>
