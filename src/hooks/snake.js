@@ -12,6 +12,13 @@ function reducer(res, newElement) {
   };
 }
 
+export const Direction = {
+  UP: 0,
+  DOWN: 1,
+  LEFT: 2, 
+  RIGHT: 3,
+}
+
 export const useSnake = ({ canvas, eatCallback }) => {
   let cpBody = [];
 
@@ -24,7 +31,7 @@ export const useSnake = ({ canvas, eatCallback }) => {
 
   const init = {
     body: cpBody,
-    direction: "right",
+    direction: Direction.RIGHT,
     score: 20,
     snakeW: 7,
     snakeH: 7,
@@ -36,14 +43,14 @@ export const useSnake = ({ canvas, eatCallback }) => {
 
   const getDirection = useCallback(
     e => {
-      if (e.keyCode === 37 && state.direction !== "right") {
-        setState({ direction: "left" });
-      } else if (e.keyCode === 38 && state.direction !== "down") {
-        setState({ direction: "up" });
-      } else if (e.keyCode === 39 && state.direction !== "left") {
-        setState({ direction: "right" });
-      } else if (e.keyCode === 40 && state.direction !== "up") {
-        setState({ direction: "down" });
+      if (e.keyCode === 37 && state.direction !== Direction.RIGHT) {
+        setState({ direction: Direction.LEFT });
+      } else if (e.keyCode === 38 && state.direction !== Direction.DOWN) {
+        setState({ direction: Direction.UP });
+      } else if (e.keyCode === 39 && state.direction !== Direction.LEFT) {
+        setState({ direction: Direction.RIGHT });
+      } else if (e.keyCode === 40 && state.direction !== Direction.UP) {
+        setState({ direction: Direction.DOWN });
       }
     },
     [state.direction]
@@ -83,7 +90,7 @@ export const useSnake = ({ canvas, eatCallback }) => {
   function drawSnake(ctx, x, y, head) {
     let headImg = new Image();
 
-    if (head && state.direction === "right") {
+    if (head && state.direction === Direction.RIGHT) {
       headImg.src = snakeRight;
       ctx.drawImage(
         headImg,
@@ -92,7 +99,7 @@ export const useSnake = ({ canvas, eatCallback }) => {
         34,
         18
       );
-    } else if (head && state.direction === "left") {
+    } else if (head && state.direction === Direction.LEFT) {
       headImg.src = snakeLeft;
       ctx.drawImage(
         headImg,
@@ -101,7 +108,7 @@ export const useSnake = ({ canvas, eatCallback }) => {
         34,
         18
       );
-    } else if (head && state.direction === "up") {
+    } else if (head && state.direction === Direction.UP) {
       headImg.src = snakeUp;
       ctx.drawImage(
         headImg,
@@ -110,7 +117,7 @@ export const useSnake = ({ canvas, eatCallback }) => {
         18,
         34
       );
-    } else if (head && state.direction === "down") {
+    } else if (head && state.direction === Direction.DOWN) {
       headImg.src = snakeDown;
       ctx.drawImage(
         headImg,
@@ -195,13 +202,13 @@ export const useSnake = ({ canvas, eatCallback }) => {
 
       checkCollision(snakeHeadX, snakeHeadY, state.body);
 
-      if (state.direction === "left") {
+      if (state.direction === Direction.LEFT) {
         snakeHeadX--;
-      } else if (state.direction === "up") {
+      } else if (state.direction === Direction.UP) {
         snakeHeadY--;
-      } else if (state.direction === "right") {
+      } else if (state.direction === Direction.RIGHT) {
         snakeHeadX++;
-      } else if (state.direction === "down") {
+      } else if (state.direction === Direction.DOWN) {
         snakeHeadY++;
       }
 
@@ -231,7 +238,12 @@ export const useSnake = ({ canvas, eatCallback }) => {
     setState({ paused });
   }
 
+  function setDirection(direction) {
+    setState({ direction });
+  }
+
   return {
     current: state.current?.data,
+    setDirection,
   };
 };
