@@ -19,7 +19,7 @@ export const Direction = {
   RIGHT: 3,
 }
 
-export const useSnake = ({ canvas, eatCallback }) => {
+export const useSnake = ({ canvas, eatCallback, controlClickHandler = () => console.log('pegou') }) => {
   let cpBody = [];
 
   for (let i = 19; i >= 0; i--) {
@@ -37,11 +37,12 @@ export const useSnake = ({ canvas, eatCallback }) => {
     snakeH: 7,
     polits: data,
     paused: false,
+    control: Direction.UP,
   };
 
   const [state, setState] = React.useReducer(reducer, init);
 
-  const getDirection = useCallback(
+  const listenKeyboard = useCallback(
     e => {
       if (e.keyCode === 37 && state.direction !== Direction.RIGHT) {
         setState({ direction: Direction.LEFT });
@@ -56,12 +57,25 @@ export const useSnake = ({ canvas, eatCallback }) => {
     [state.direction]
   );
 
+  const listenClick = (direction) => {
+    console.log('call')
+    if (direction === Direction.LEFT && state.direction !== Direction.RIGHT) {
+      setState({ direction: Direction.LEFT });
+    } else if (direction === Direction.UP && state.direction !== Direction.DOWN) {
+      setState({ direction: Direction.UP });
+    } else if (direction === Direction.RIGHT && state.direction !== Direction.LEFT) {
+      setState({ direction: Direction.RIGHT });
+    } else if (direction === Direction.DOWN && state.direction !== Direction.UP) {
+      setState({ direction: Direction.DOWN });
+    }
+  }
+
   useEffect(() => {
-    window.addEventListener("keydown", getDirection);
+    window.addEventListener("keydown", listenKeyboard);
     return () => {
-      window.removeEventListener("keydown", getDirection);
+      window.removeEventListener("keydown", listenKeyboard);
     };
-  }, [getDirection]);
+  }, [listenKeyboard]);
 
   useLayoutEffect(() => {
     const interval = setInterval(() => {
@@ -245,5 +259,6 @@ export const useSnake = ({ canvas, eatCallback }) => {
   return {
     current: state.current?.data,
     setDirection,
+    listenClick,
   };
 };

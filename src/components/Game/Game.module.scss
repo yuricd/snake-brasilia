@@ -1,5 +1,10 @@
 .main {
   position: relative;
+  height: 100vh;
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: 5fr 2fr;
+  padding-top: 10px;
 }
 
 .canvas {
@@ -8,4 +13,13 @@
   transform: translateX(-50%);
   border: 1px solid #FFB800;
   margin: 0 auto;
+}
+
+.bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  padding: 0 1em;
 }
