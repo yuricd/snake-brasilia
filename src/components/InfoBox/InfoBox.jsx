@@ -1,11 +1,10 @@
 import React from 'react';
 import styles from './InfoBox.module.scss';
+import { formatMonetary } from '../../utils/MonetaryUtils';
 
-function InfoBox({ data }) {
+function InfoBox({ data, continueCallback }) {
 
   const { name, image, description, skills, salary } = data;
-
-  console.log({ name, image, description, skills, salary });
 
   return (
     <>
@@ -18,14 +17,14 @@ function InfoBox({ data }) {
 
           <div className={styles.summary}>
             <h1>{name}</h1>
-              {description.map(desc => <p> {desc}</p>)}
+              {description.map((desc, idx) => <p key={idx}> {desc}</p>)}
           </div>
         </header>
         
         <section className={styles.skills}>
           <div className={styles.display}>
-            {Object.keys(skills).map(skill => 
-              <div className={styles.row}>
+            {Object.keys(skills).map((skill, idx) => 
+              <div className={styles.row} key={idx}>
                 <span className={styles.skill}>
                   {skill}
                 </span>
@@ -40,8 +39,8 @@ function InfoBox({ data }) {
         </section>
 
         <section className={styles.bottom}>
-          <span>Salário: {salary}</span>
-          <button>Continuar</button>
+          <span>Salário: {formatMonetary(salary, true)}</span>
+          <button className={styles.continue} onClick={continueCallback}>Continuar</button>
         </section>
       </div>
     </>

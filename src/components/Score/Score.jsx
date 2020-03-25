@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Score.module.scss';
+import { formatMonetary } from '../../utils/MonetaryUtils';
 
 function Score({ score = 0 }) {
   return (
@@ -11,10 +12,6 @@ function Score({ score = 0 }) {
       </div>
     </div>
   );
-}
-
-const formatMonetary = (val) => {
-  return (val/100).toFixed(2);
 }
 
 export default Score;

@@ -22,7 +22,7 @@ export const Direction = {
 export const useSnake = ({ canvas, eatCallback, controlClickHandler = () => console.log('pegou') }) => {
   let cpBody = [];
 
-  for (let i = 19; i >= 0; i--) {
+  for (let i = 2; i >= 0; i--) {
     cpBody.push({
       x: i,
       y: 10
@@ -32,12 +32,13 @@ export const useSnake = ({ canvas, eatCallback, controlClickHandler = () => cons
   const init = {
     body: cpBody,
     direction: Direction.RIGHT,
-    score: 20,
+    score: 0,
     snakeW: 7,
     snakeH: 7,
     polits: data,
     paused: false,
     control: Direction.UP,
+    finished: false,
   };
 
   const [state, setState] = React.useReducer(reducer, init);
@@ -58,7 +59,6 @@ export const useSnake = ({ canvas, eatCallback, controlClickHandler = () => cons
   );
 
   const listenClick = (direction) => {
-    console.log('call')
     if (direction === Direction.LEFT && state.direction !== Direction.RIGHT) {
       setState({ direction: Direction.LEFT });
     } else if (direction === Direction.UP && state.direction !== Direction.DOWN) {
@@ -96,6 +96,8 @@ export const useSnake = ({ canvas, eatCallback, controlClickHandler = () => cons
       const height = canvas.current.height;
       
       setState({
+        width,
+        height,
         current: getPolit(width, height),
       });
     }
@@ -170,7 +172,7 @@ export const useSnake = ({ canvas, eatCallback, controlClickHandler = () => cons
 
   function getPolit(width, height) {
     return {
-      data: state.polits ? state.polits[0] : data[0],
+      data: state.polits.length ? state.polits[0] : data[0],
       pos: {
         x: Math.round(Math.random() * (width / state.snakeW)),
         y: Math.round(Math.random() * (height / state.snakeH))
@@ -230,11 +232,9 @@ export const useSnake = ({ canvas, eatCallback, controlClickHandler = () => cons
         snakeHeadX === state.current.pos.x &&
         snakeHeadY === state.current.pos.y
       ) {
-        setState({ polits: state.polits.shift() });
-        setState({ current: getPolit(width, height) });
-        setState({ score: state.current.data.salary });
-        eatCallback(state.score);
-        setPaused(true);
+        const sumScore = state.score + state.current.data.salary;
+        setState({ paused: true, score: sumScore });
+        eatCallback(sumScore);
       } else {
         state.body.pop();
       }
@@ -248,8 +248,18 @@ export const useSnake = ({ canvas, eatCallback, controlClickHandler = () => cons
     }
   }
 
-  function setPaused(paused) {
-    setState({ paused });
+  function nextPolitician(width, height) {
+    if (state.polits.length) {
+      setState({ polits: state.polits.shift() });
+      setState({ current: getPolit(width, height) });
+    } else {
+      setState({ finished: true });
+    }
+  }
+ 
+  function setPaused2False() {
+    setState({ paused: false });
+    nextPolitician(state.width, state.height);
   }
 
   function setDirection(direction) {
@@ -260,5 +270,8 @@ export const useSnake = ({ canvas, eatCallback, controlClickHandler = () => cons
     current: state.current?.data,
     setDirection,
     listenClick,
+    setPaused2False,
+    nextPolitician,
+    finished: state.finished,
   };
 };
