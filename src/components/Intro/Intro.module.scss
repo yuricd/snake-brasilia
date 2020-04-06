@@ -1,0 +1,47 @@
+@import '../../styles/animations.scss';
+
+$dark-yellow: #593B00;
+$font-size: 17px;
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  background: #000;
+  top: 0;
+  opacity: .8;
+  z-index: 10;
+}
+
+.intro {
+  z-index: 11;
+  position: absolute;
+  left: 50%;
+  top: 4em;
+  transform: translateX(-50%);
+  width: 80vw;
+  max-width: 500px;
+  max-height: 100vh;
+  background: url('../../assets/images/info-background.png') no-repeat;
+  background-size: 100% 100%; 
+  text-transform: uppercase;
+  padding: 1em;
+  text-align: center;
+  animation: focusIn ease-out 1s;
+
+  h1 {
+    margin-bottom: 1em;
+  }
+
+  section {
+    margin-bottom: 1em;
+  }
+
+  p {
+    @include fadeContent(1s); 
+    font-size: $font-size; 
+    i {
+      font-size: 2rem;
+    }
+  }
+}

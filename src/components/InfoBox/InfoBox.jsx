@@ -1,14 +1,14 @@
 import React from 'react';
 import styles from './InfoBox.module.scss';
-import { formatMonetary } from '../../utils/MonetaryUtils';
+import Overlay from '../Overlay/Overlay';
 
 function InfoBox({ data, continueCallback }) {
 
-  const { name, image, description, skills, salary } = data;
+  const { name, image, description, skills } = data;
 
   return (
-    <>
-      <div className={styles.overlay} />
+    <div style={{ width: '100vw', overflowX: 'hidden' }}>
+      <Overlay />
       <div className={styles.infoBox}>
         <header className={styles.header}>
           <figure>
@@ -29,8 +29,8 @@ function InfoBox({ data, continueCallback }) {
                   {skill}
                 </span>
                 <span className={styles.val}>
-                  <div className={styles.bar} style={{ width: `${skills[skill] * 100}%`}}>
-                    {skills[skill] * 10} / 10
+                  <div className={styles.bar} style={{ width: `${skills[skill] * 10}%`}}>
+                    <div className={styles.fill}>{skills[skill]}</div>
                   </div>
                 </span>
               </div>
@@ -39,11 +39,11 @@ function InfoBox({ data, continueCallback }) {
         </section>
 
         <section className={styles.bottom}>
-          <span>Salário: {formatMonetary(salary, true)}</span>
+          <span />
           <button className={styles.continue} onClick={continueCallback}>Continuar</button>
         </section>
       </div>
-    </>
+    </div>
   );
 }
 

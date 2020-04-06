@@ -1,10 +1,9 @@
 
-$button-size: 37px;
+$button-size: 42px;
 .controls {
   display: grid;
   grid-template-columns: [leftCol] $button-size [centerCol] $button-size [rightCol] $button-size;
   grid-template-rows: [topRow] $button-size [middleRow] $button-size [bottomRow] $button-size;
-  height: 100%;
   align-items: center;
 }
 
@@ -17,9 +16,9 @@ $button-size: 37px;
   padding: 0;
   background: none;
   color: #FFB800;
-  font-size: 2.4rem;
+  font-size: 2.7rem;
   text-align: center;
-  margin: -6px 1px;
+  margin: -5px 1px;
 }
 
 .up {

@@ -1,0 +1,40 @@
+.endScreen {
+  z-index: 11;
+  position: absolute;
+  left: 50%;
+  top: 4em;
+  transform: translateX(-50%);
+  width: 80vw;
+  max-width: 500px;
+  max-height: 100vh;
+  background: url('../../assets/images/info-background.png') no-repeat;
+  background-size: 100% 100%; 
+  padding: 1em;
+  text-align: center;
+
+  h1 {
+    margin-bottom: 1em;
+  }
+}
+
+.shareButtons {
+  display: flex;
+  margin: 1em 0;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+  button {
+    margin-bottom: 1em;
+  }
+}
+
+.bottom {
+  margin-top: 2em;
+  button {
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 50%;
+  }
+}

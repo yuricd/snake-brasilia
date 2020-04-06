@@ -1,9 +1,10 @@
-import React, { useEffect, useLayoutEffect, useCallback } from "react";
+import { useEffect, useReducer, useLayoutEffect, useCallback } from "react";
 import snakeRight from "../assets/images/snake-head-right.png";
 import snakeDown from "../assets/images/snake-head-down.png";
 import snakeLeft from "../assets/images/snake-head-left.png";
 import snakeUp from "../assets/images/snake-head-up.png";
 import { data } from "../data/politicians";
+import { shuffle } from "../utils/Shuffle";
 
 function reducer(res, newElement) {
   return {
@@ -35,13 +36,13 @@ export const useSnake = ({ canvas, eatCallback, controlClickHandler = () => cons
     score: 0,
     snakeW: 7,
     snakeH: 7,
-    polits: data,
-    paused: false,
+    polits: shuffle(data),
+    paused: true,
     control: Direction.UP,
     finished: false,
   };
 
-  const [state, setState] = React.useReducer(reducer, init);
+  const [state, setState] = useReducer(reducer, init);
 
   const listenKeyboard = useCallback(
     e => {
@@ -79,7 +80,7 @@ export const useSnake = ({ canvas, eatCallback, controlClickHandler = () => cons
 
   useLayoutEffect(() => {
     const interval = setInterval(() => {
-      if (canvas && canvas.current) {
+      if (canvas && canvas.current && !state.paused) {
         const ctx = canvas.current.getContext("2d");
         const width = canvas.current.width;
         const height = canvas.current.height;
@@ -101,6 +102,7 @@ export const useSnake = ({ canvas, eatCallback, controlClickHandler = () => cons
         current: getPolit(width, height),
       });
     }
+    /* eslint-disable-next-line */
   }, []);
 
   function drawSnake(ctx, x, y, head) {
@@ -160,19 +162,19 @@ export const useSnake = ({ canvas, eatCallback, controlClickHandler = () => cons
       x >= state.width / state.snakeW ||
       y >= state.height / state.snakeH
     ) {
-      console.log("colidiu");
+      setState({ finished: true, paused: true });
     }
-    // for (let i=1; i<array.length; i++) {
-    //   if(x === array[i].x && y === array[i].y) {
-    //     alert('colidiu2');
-    //   }
-    // }
+    for (let i=1; i<array.length; i++) {
+      if(x === array[i].x && y === array[i].y) {
+        setState({ finished: true, paused: true });
+      }
+    }
     return false;
   }
 
-  function getPolit(width, height) {
+  function getPolit(width, height, politsList = state.polits) {
     return {
-      data: state.polits.length ? state.polits[0] : data[0],
+      data: politsList.length ? politsList[0] : data[0],
       pos: {
         x: Math.round(Math.random() * (width / state.snakeW)),
         y: Math.round(Math.random() * (height / state.snakeH))
@@ -187,19 +189,17 @@ export const useSnake = ({ canvas, eatCallback, controlClickHandler = () => cons
     ctx.shadowColor = "rgba(255, 255, 255, 1)";
     ctx.drawImage(
       renderImg,
-      x * state.snakeW - 4,
-      y * state.snakeH - 4,
-      state.snakeW + 8,
-      state.snakeH + 8
+      x * state.snakeW - 1,
+      y * state.snakeH - 1,
+      state.snakeW + 2,
+      state.snakeH + 2
     );
     ctx.shadowColor = "rgba(255, 255, 255, 0)";
   }
 
-  function draw(ctx, width, height) {
+  async function draw(ctx, width, height) {
     if (!state.current?.data) {
       console.log("end");
-    } else if (state.paused) {
-      console.log("paused");
     } else {
       ctx.clearRect(0, 0, width, height);
 
@@ -232,7 +232,7 @@ export const useSnake = ({ canvas, eatCallback, controlClickHandler = () => cons
         snakeHeadX === state.current.pos.x &&
         snakeHeadY === state.current.pos.y
       ) {
-        const sumScore = state.score + state.current.data.salary;
+        const sumScore = state.score + 1;
         setState({ paused: true, score: sumScore });
         eatCallback(sumScore);
       } else {
@@ -248,18 +248,22 @@ export const useSnake = ({ canvas, eatCallback, controlClickHandler = () => cons
     }
   }
 
-  function nextPolitician(width, height) {
+  async function nextPolitician(width, height) {
     if (state.polits.length) {
-      setState({ polits: state.polits.shift() });
-      setState({ current: getPolit(width, height) });
+      const [, ...rest] = state.polits;
+      setState({ polits: rest });
+      setState({ current: getPolit(width, height, rest) });
     } else {
       setState({ finished: true });
     }
   }
- 
-  function setPaused2False() {
+
+  function setPaused2False(getNextPolitician = true) {
     setState({ paused: false });
-    nextPolitician(state.width, state.height);
+
+    if (getNextPolitician) {
+      nextPolitician(state.width, state.height);
+    }
   }
 
   function setDirection(direction) {
@@ -273,5 +277,6 @@ export const useSnake = ({ canvas, eatCallback, controlClickHandler = () => cons
     setPaused2False,
     nextPolitician,
     finished: state.finished,
+    paused: state.paused,
   };
 };

@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Controls.module.scss";
-import { Direction } from '../../hooks/snake'; 
+import { Direction } from '../../hooks/SnakeHook'; 
 
 function Controls({ clickHandler }) {
   return (

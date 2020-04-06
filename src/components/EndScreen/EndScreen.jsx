@@ -1,31 +1,29 @@
-import React from 'react';
-import styles from './EndScreen.module.scss';
-import { formatMonetary } from '../../utils/MonetaryUtils';
+import React from "react";
+import styles from "./EndScreen.module.scss";
+import Overlay from "../Overlay/Overlay";
 
 function EndScreen({ score }) {
-
   return (
-    <div className={styles.endScreen}>
-      <h1>Acabou!</h1>
-      <p>Você conseguiu {formatMonetary(score, true)}.</p>
+    <>
+      <Overlay />
+      <div className={styles.endScreen}>
+        <h1>Fim!</h1>
+        <p>Você conseguiu comer {score} políticos.</p>
+        <p>Desafie seus amigos a baterem sua pontuação.</p>
 
-      <div className={styles.topLeaders}>
-        <table>
-          <tbody>
-            <tr>
-              <th>Nome</th>
-              <th>Pontuação</th>
-            </tr>
-            <tr>
-              <td>Yuri</td>
-              <td>49.000,00 (4 políticos)</td>
-            </tr>
-          </tbody>
-        </table>
+        <div className={styles.shareButtons}>
+          <button>Facebook</button>
+          <button>Copiar link</button>
+        </div>
+
+        <footer className={styles.bottom}>
+          <button>Jogar novamente</button>
+          <p>
+            <i className="fab fa-github" /> Open-source, como sempre
+          </p>
+        </footer>
       </div>
-
-      <p>Compartilhe com seus amigos e veja quem consegue comer mais políticos.</p>
-    </div>
+    </>
   );
 }
 
