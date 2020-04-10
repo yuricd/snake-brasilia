@@ -11,7 +11,9 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  border: 1px solid #FFB800;
+  // border: 1px solid #FFB800;
+  background: url('../../assets/images/frame.png') no-repeat;
+  background-size: 100% 100%;
   margin: 0 auto;
 }
 

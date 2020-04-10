@@ -8,16 +8,18 @@ function Intro({ onClose }) {
     <>
       <Overlay />
       <div className={styles.intro}>
-        <h1>Cobrinha vai à Brasília</h1>
-        
-        <section>
-          <p>Coma todos os políticos que puder</p>
-          <p>Boa sorte com a digestão</p>  
+        <h1>Snake vai à Brasília</h1>
+
+        <section className={styles.highlight}>
+          <p>Controles</p>
+          <p>Desktop: use as setas  ⇦ ⇧ ⇨ ⇩ do teclado</p>
+          <p>Mobile: toque a tela nas direções desejadas ou use o controle que estará na parte inferior</p>
         </section>
 
         <section>
-          <p><i className="fas fa-volume-up" /></p>
-          <p>Deixe o som ativado para ouvir o que a nata política tem a dizer</p>
+          <p className={styles.middle}><i className="fas fa-volume-up" />Ative o som</p>
+              
+          <p>Coma todos os políticos que puder e boa sorte com a digestão</p>
         </section>
 
         <section>

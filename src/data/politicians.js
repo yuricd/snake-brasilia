@@ -1,13 +1,9 @@
-import mariaDoRosario from "../assets/politicians/maria-do-rosario.jpg";
-import ciro from "../assets/politicians/ciro-gomes.jpg";
-
 export const AUDIO_PREFIX = 'audio';
 
 export const data = [
   {
     id: 'ciro-gomes',
     name: "Ciro Gomes",
-    image: ciro,
     audios: ['audio1.ogg','audio2.ogg','audio3.ogg','audio4.ogg','audio5.ogg'],
     description: [
       "Já proferiu frase machista, racista e homofóbica, mas seus eleitores odeiam mesmo é o Bolsonaro",
@@ -22,7 +18,6 @@ export const data = [
   {
     id: "jean-wyllys",
     name: "Jean Wyllys",
-    image: mariaDoRosario,
     audios: ['audio1.ogg','audio2.ogg','audio3.ogg'],
     description: [
       "Ganhador do BBB e ex-deputado federal",
@@ -38,7 +33,6 @@ export const data = [
   {
     id: "dilma",
     name: "Dilma",
-    image: mariaDoRosario,
     audios: ['audio1.ogg','audio2.ogg','audio3.ogg','audio4.ogg','audio5.ogg','audio6.ogg','audio7.ogg','audio8.ogg'],
     description: [
       "Poste número 1 do PT",
@@ -53,7 +47,6 @@ export const data = [
   {
     id: "lula",
     name: "Lula (Amigo)",
-    image: mariaDoRosario,
     audios: ['audio1.ogg','audio2.ogg','audio3.ogg','audio4.ogg','audio5.ogg'], 
     description: [
       "Acha que tem gente que ainda acredita nele",
@@ -68,7 +61,6 @@ export const data = [
   {
     id: "bolsonaro",
     name: "Jair Bolsonaro",
-    image: mariaDoRosario,
     audios: ['audio1.ogg','audio2.ogg','audio3.ogg','audio4.ogg','audio5.ogg','audio6.ogg','audio7.ogg'],
     description: [
       "Pior que ele, só os filhos",
@@ -83,7 +75,6 @@ export const data = [
   {
     id: "boulos",
     name: "Guilherme Boulos",
-    image: mariaDoRosario,
     audios: ['audio1.ogg'],
     description: [
       "Veio de família rica mas finge que é pobre e da periferia",
@@ -97,7 +88,6 @@ export const data = [
   {
     id: "cabo-daciolo",
     name: "Cabo Daciolo",
-    image: mariaDoRosario,
     audios: ['audio1.ogg','audio2.ogg','audio3.ogg','audio4.ogg','audio5.ogg'],
     description: [
       "Axalala lá",
@@ -113,7 +103,6 @@ export const data = [
     id: "maria-do-rosario",
     name: "Maria do Rosário (Solução)",
     audios: ['audio1.ogg','audio2.ogg','audio3.ogg','audio4.ogg','audio5.ogg','audio6.ogg','audio7.ogg','audio8.ogg'],
-    image: mariaDoRosario,
     description: [
       "Um amor de pessoa que merece a presidência",
       "(não queremos tomar processo e ser condenado à prisão por dizer algo)",
@@ -127,7 +116,6 @@ export const data = [
   {
     id: "arthur-do-val",
     name: "Arthur do Val",
-    image: mariaDoRosario,
     audios: ['audio1.ogg','audio2.ogg','audio3.ogg','audio4.ogg','audio5.ogg','audio6.ogg'],
     description: [
       "\"Vai pra Liberland, Brother\"",
@@ -142,7 +130,6 @@ export const data = [
   {
     id: "frota",
     name: "Alexandre Frota",
-    image: mariaDoRosario,
     audios: ['audio1.ogg','audio2.ogg','audio3.ogg','audio4.ogg','audio5.ogg'],
     description: [
       "Ninguém sabe como chegou até aqui, mas o fato é que está",
@@ -156,7 +143,6 @@ export const data = [
   {
     id: "marcia-tiburi",
     name: "Marcia Tiburi",
-    image: mariaDoRosario,
     audios: ['audio-001.ogg','audio-002.ogg','audio-003.ogg','audio-004.ogg','audio-005.ogg','audio-006.ogg','audio-007.ogg'],
     description: [
       "Acredita na preciosidade do c*",
@@ -171,7 +157,6 @@ export const data = [
   {
     id: "eduardo-suplicy",
     name: "Eduardo Suplicy",
-    image: mariaDoRosario,
     audios: ['audio-001.ogg','audio-002.ogg','audio-003.ogg','audio-004.ogg','audio-005.ogg','audio-006.ogg'],
     description: [
       "Algumas pessoas não gostam dele pelas posições políticas",
@@ -186,7 +171,6 @@ export const data = [
   {
     id: "haddad",
     name: "Fernando Haddad (corrigir audio)",
-    image: mariaDoRosario,
     audios: ['audio-001.ogg','audio-002.ogg'],
     description: [
       "Poste número 2 do PT",
@@ -200,7 +184,6 @@ export const data = [
   {
     id: "aecio",
     name: "Aécio Neves (Mineirinho)",
-    image: mariaDoRosario,
     audios: ['audio-001.ogg','audio-002.ogg','audio-003.ogg','audio-004.ogg','audio-005.ogg','audio-006.ogg','audio-007.ogg'],
     description: [
       "Alguma piada com pó",
@@ -214,7 +197,6 @@ export const data = [
   {
     id: "marcelo-freixo",
     name: "Marcelo Freixo",
-    image: mariaDoRosario,
     audios: ['audio-001.ogg','audio-002.ogg'],
     description: [
       "Outro amor de pessoa que merece o mundo",
@@ -229,7 +211,6 @@ export const data = [
   {
     id: "sergio-moro",
     name: "Sérgio Moro",
-    image: mariaDoRosario,
     audios: ['audio-001.ogg','audio-002.ogg','audio-003.ogg','audio-004.ogg'],
     description: [
       "Mais eficiente que Loperamida",
@@ -244,7 +225,6 @@ export const data = [
   {
     id: "michel-temer",
     name: "Michel Temer",
-    image: mariaDoRosario,
     audios: ['audio-001.ogg','audio-002.ogg'],
     description: [
       "É tão vampiro que na eleição de 2014 ninguém viu sua foto na urna",
@@ -258,7 +238,6 @@ export const data = [
   {
     id: "renanc-calheiros",
     name: "Renan Calheiros (Justiça)",
-    image: mariaDoRosario,
     audios: ['audio.ogg'],
     description: [
       "Existe o legislativo, o executivo, o judiciário e o Renan",
@@ -272,7 +251,6 @@ export const data = [
   {
     id: "gleisi-hoffmann",
     name: "Gleisi Hoffmann (Amante, Coxa)",
-    image: mariaDoRosario,
     audios: ['audio-001.ogg','audio-002.ogg','audio-003.ogg'],
     description: [
       "Sacerdotisa da fé lulista",
@@ -286,7 +264,6 @@ export const data = [
   {
     id: "marcos-pontes",
     name: "Marcos Pontes",
-    image: mariaDoRosario,
     description: [
       "A gente achava que a coisa mais insana que ele tinha feito era ir ao espaço",
       "Aí ele se aliou ao Bolsonaro",
@@ -300,7 +277,6 @@ export const data = [
   {
     id: "cid-gomes",
     name: "Cid Gomes",
-    image: mariaDoRosario,
     audios: ['audio-001.ogg','audio-002.ogg','audio-003.ogg'],
     description: [
       "Pagou 3mi e 650 mil reais para tenor e cantora inaugurarem obras",
@@ -315,7 +291,6 @@ export const data = [
   {
     id: "lindbergh",
     name: "Lindbergh Farias (Feio ou Lindinho)",
-    image: mariaDoRosario,
     audios: ['audio-001.ogg','audio-002.ogg','audio-003.ogg'],
     description: [
       "Foi líder estudantil mas nunca se formou; votou contra a prisão de Delcídio do Amaral que acabou sendo preso; tentou conquistar a Gleisi e conseguiu",
@@ -330,7 +305,6 @@ export const data = [
   {
     id: "eduardo-bolsonaro",
     name: "Eduardo Bolsonaro",
-    image: mariaDoRosario,
     audios: ['audio-001.ogg','audio-002.ogg','audio-003.ogg','audio-004.ogg'],
     description: [
       "Se parece com o Flávio, lembra o Carlos e é pior que o Jair",
@@ -344,7 +318,6 @@ export const data = [
   {
     id: "joice-hasselmann",
     name: "Joice Hasselman,",
-    image: mariaDoRosario,
     audios: ['audio-001.ogg','audio-002.ogg','audio-003.ogg','audio-004.ogg','audio-005.ogg','audio-006.ogg'],
     description: [
       "Algumas pessoas a chamam de Peppa Pig",
@@ -359,7 +332,6 @@ export const data = [
   {
     id: "amoedo",
     name: "João Amoêdo",
-    image: mariaDoRosario,
     audios: ['audio-001.ogg','audio-002.ogg','audio-003.ogg','audio-004.ogg'],
     description: [
       "Cavalinho de troia que convence muita gente",
@@ -373,7 +345,6 @@ export const data = [
   {
     id: "meirelles",
     name: "Henrique Meirelles",
-    image: mariaDoRosario,
     audios: ['audio-001.ogg','audio-002.ogg'],
     description: [
       "Investiu 54mi na própria campanha",
@@ -388,7 +359,6 @@ export const data = [
   {
     id: "marina-silva",
     name: "Marina Silva",
-    image: mariaDoRosario,
     audios: ['audio-001.ogg','audio-002.ogg','audio-003.ogg','audio-004.ogg','audio-005.ogg','audio-006.ogg'],
     description: [
       "Pessoal votou mais por dó",
@@ -402,7 +372,6 @@ export const data = [
   {
     id: "isa-penna",
     name: "Isa Penna",
-    image: mariaDoRosario,
     audios: ['audio-001.ogg','audio-002.ogg','audio-003.ogg','audio-004.ogg','audio-005.ogg','audio-006.ogg','audio-007.ogg'],
     description: [
       "Ninguém:",
@@ -417,7 +386,6 @@ export const data = [
   {
     id: "jandira-feghali",
     name: "Jandira Feghali",
-    image: mariaDoRosario,
     audios: ['audio-001.ogg','audio-002.ogg'],
     description: [
       "Sósia do Laerte",
@@ -431,7 +399,6 @@ export const data = [
   {
     id: "samia-bomfim",
     name: "Sâmia Bomfim",
-    image: mariaDoRosario,
     audios: ['audio-001.ogg','audio-002.ogg','audio-003.ogg'],
     description: [
       "Exige decoro de humorista ",
@@ -446,7 +413,6 @@ export const data = [
   {
     id: "manuela-davila",
     name: "Manuela D’Avila (Avião)",
-    image: mariaDoRosario,
     audios: ['audio-001.ogg','audio-002.ogg','audio-003.ogg'],
     description: [
       "Poste número 3 do PT",
@@ -460,7 +426,6 @@ export const data = [
   {
     id: "ivan-valente",
     name: "Ivan Valente",
-    image: mariaDoRosario,
     audios: ['audio-001.ogg','audio-002.ogg'],
     description: [
       "Anticapitalista que tem mais de 1 milhão em aplicações de renda fixa (segundo TSE)",
@@ -474,7 +439,6 @@ export const data = [
   {
     id: "gilmar-mendes",
     name: "Gilmar Mendes ",
-    image: mariaDoRosario,
     audios: ['audio.ogg'],
     description: [
       "A versão chata do João Plenário",
@@ -488,7 +452,6 @@ export const data = [
   {
     id: "sergio-cabral",
     name: "Sérgio Cabral (Poximus)",
-    image: mariaDoRosario,
     audios: ['audio-001.ogg','audio-002.ogg'],
     description: [
       "1 pra você, 1 pra mim; 2 pra você, 1, 2 pra mim",
@@ -502,7 +465,6 @@ export const data = [
   {
     id: "joao-doria",
     name: "João Dória",
-    image: mariaDoRosario,
     audios: ['audio-001.ogg','audio-002.ogg','audio-003.ogg','audio-004.ogg'],
     description: [
       "O mandato só valeu a pena pelos vídeos",
@@ -516,7 +478,6 @@ export const data = [
   {
     id: "roberto-requiao",
     name: "Roberto Requião",
-    image: mariaDoRosario,
     audios: ['audio-001.ogg','audio-002.ogg','audio-003.ogg'],
     description: [
       "Acha que fez o melhor governo da história do Paraná kkkk",
@@ -530,7 +491,6 @@ export const data = [
   {
     id: "anthony-garotinho",
     name: "Anthony Garotinho (Bolinha ou Pescador)",
-    image: mariaDoRosario,
     audios: ['audio-001.ogg','audio-002.ogg','audio-003.ogg'],
     description: [
       "A família já ocupa um pavilhão todo",
@@ -544,7 +504,6 @@ export const data = [
   {
     id: "paulo-maluf",
     name: "Paulo Maluf",
-    image: mariaDoRosario,
     audios: ['audio-001.ogg','audio-002.ogg','audio-003.ogg'],
     description: [
       "Este jogo foi ele que fez",
@@ -559,7 +518,6 @@ export const data = [
   {
     id: "paulo-guedes",
     name: "Paulo Guedes",
-    image: mariaDoRosario,
     audios: ['audio-001.ogg','audio-002.ogg'],
     description: [
       "É de Chicago mas às vezes vai passear em Frankfurt",
@@ -573,7 +531,6 @@ export const data = [
   {
     id: "damares",
     name: "Damares Alves",
-    image: mariaDoRosario,
     audios: ['audio-001.ogg','audio-002.ogg','audio-003.ogg','audio-004.ogg','audio-005.ogg','audio-006.ogg','audio-007.ogg'],
     description: [
       "Dizem que quando Bolsonaro indicou, ele estava bêbado",
@@ -587,7 +544,6 @@ export const data = [
   {
     id: "geraldo-alckmin",
     name: "Alckmin (Belém ou M&M)",
-    image: mariaDoRosario,
     audios: ['audio-001.ogg','audio-002.ogg'],
     description: [
       "Picolé de chuchu",
@@ -601,7 +557,6 @@ export const data = [
   {
     id: "beto-richa",
     name: "Beto Richa (Brigão, Piloto)",
-    image: mariaDoRosario,
     audios: ['audio-001.ogg','audio-002.ogg'],
     description: [
       "Político de Schrödinger",
@@ -616,7 +571,6 @@ export const data = [
   {
     id: "flavio-bolsonaro",
     name: "Flavio Bolsonaro",
-    image: mariaDoRosario,
     audios: ['audio-001.ogg','audio-002.ogg','audio-003.ogg'],
     description: [
       "Lucra mais que o Willy Wonka",
@@ -630,7 +584,6 @@ export const data = [
   {
     id: "marco-feliciano",
     name: "Marco Feliciano",
-    image: mariaDoRosario,
     audios: ['audio-001.ogg','audio-002.ogg'],
     description: [
       "Deus precisa da senha do cartão de crédito",
@@ -644,11 +597,10 @@ export const data = [
   {
     id: "kim-kataguiri",
     name: "Kim Kataguiri",
-    image: mariaDoRosario,
     audios: ['audio-001.ogg','audio-002.ogg'],
     description: [
-      "Ninguém:",
-      "Ah, pelo amor de Deus"
+      "Alguém: A",
+      "Kim: Ah, pelo amor de Deus"
     ],
     skills: {
       "Chamar para o debate": "9",

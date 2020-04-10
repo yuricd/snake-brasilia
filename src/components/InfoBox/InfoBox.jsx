@@ -4,7 +4,7 @@ import Overlay from '../Overlay/Overlay';
 
 function InfoBox({ data, continueCallback }) {
 
-  const { name, image, description, skills } = data;
+  const { id, name, description, skills } = data;
 
   return (
     <div style={{ width: '100vw', overflowX: 'hidden' }}>
@@ -12,7 +12,7 @@ function InfoBox({ data, continueCallback }) {
       <div className={styles.infoBox}>
         <header className={styles.header}>
           <figure>
-            <img src={image} alt="Politician's ugly face" />
+            <img src={require(`../../assets/politicians/${id}.jpg`)} alt="Politician's ugly face" />
           </figure>
 
           <div className={styles.summary}>

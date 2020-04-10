@@ -16,20 +16,18 @@ function Game() {
   const canvas = React.useRef(null);
 
   const [showInfoBox, setShowInfoBox] = useState(false);
-  const [score, setScore] = useState(0);
   const [showIntro, setShowIntro] = useState(true);
   
-  const eatCallback = React.useCallback((newScore) => {
-    setScore(newScore);
+  const eatCallback = React.useCallback(() => {
     setShowInfoBox(true);
-  }, [setScore]);
+  }, []);
 
-  const { current, listenClick, setPaused2False, finished, paused } = useSnake({ canvas, eatCallback });
+  const { current, score, listenJoystickClick, setPaused, nextPolitician, finished, paused } = useSnake({ canvas, eatCallback });
 
-  const heightAvailable = 2 * (window.innerHeight/ 3)
+  const heightAvailable = 5 * (window.innerHeight/ 7)
   const canvasWidth = window.innerWidth > 700 ? 500 : window.innerWidth - (window.innerWidth % SNAKE_SIZE) - (SNAKE_SIZE * 4);
   const canvasHeight = heightAvailable - (heightAvailable % SNAKE_SIZE) - (SNAKE_SIZE * 4);
-  const bottomHeight = window.innerHeight / 3;
+  const bottomHeight = 2 * window.innerHeight / 7;
 
   useEffect(() => {
     if (paused && current?.audios) {
@@ -37,7 +35,7 @@ function Game() {
       says.src = require(`../../assets/audios/${current.id}/${getRandAudio(current.audios)}`);
       says.play();
     }
-  }, [current, paused])
+  }, [current, score])
 
   useEffect(() => {
     const bgMusic = document.getElementById('bgMusic');
@@ -67,7 +65,10 @@ function Game() {
 
         <section id="bottom" className={styles.bottom} styles={ { height: bottomHeight } }>
           <Score score={score} />
-          <Controls clickHandler={listenClick} />
+          <button onClick={() => setPaused(!paused)}>
+            <i className="fas fa-pause" />
+          </button>
+          <Controls clickHandler={listenJoystickClick} />
         </section>  
       </section>
 
@@ -79,13 +80,12 @@ function Game() {
 
   function onClose() {
     setShowIntro(false);
-    setPaused2False(false);
+    setPaused(false);
     playBg();
   }
 
   function getRandAudio(audios) {
     const idx = Math.floor(Math.random() * (audios.length) );
-    console.log(audios[idx])
     return audios[idx];
   }
 
@@ -96,7 +96,7 @@ function Game() {
 
   function onCloseInfoBox() {
     setShowInfoBox(false);
-    setPaused2False();
+    nextPolitician();
   }
 }
 
