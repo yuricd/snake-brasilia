@@ -23,7 +23,7 @@ function InfoBox({ data, continueCallback }) {
         
         <section className={styles.skills}>
           <div className={styles.display}>
-            <h3>Habilidades</h3>
+            <h3>Atributos</h3>
             {Object.keys(skills).map((skill, idx) => 
               <div className={styles.row} key={idx}>
                 <span className={styles.skill}>

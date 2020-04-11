@@ -10,7 +10,6 @@ import bgMaw from "../../assets/audios/_general/background-maw.ogg";
 import Intro from "../Intro/Intro";
 import { sleep } from "../../utils/Utils";
 import Countdown from "../Countdown/Countdown";
-import { getRand } from "../../utils/Utils";
 
 const SNAKE_SIZE = 7;
 
@@ -110,6 +109,11 @@ function Game() {
       )}
     </div>
   );
+
+  function getRand(arr) {
+    const idx = Math.floor(Math.random() * arr.length);
+    return arr[idx];
+  }
 
   function screenConfig() {
     const heightAvailable = 5 * (window.innerHeight / 7);

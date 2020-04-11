@@ -102,13 +102,13 @@ export const useSnake = ({ canvas, eatCallback }) => {
   );
 
   useEffect(() => {
-    const canvasCurr = canvas.current;
+    // const canvasCurr = canvas.current;
     window.addEventListener("keydown", listenKeyboard);
-    canvasCurr.addEventListener("click", listenScreenTouch);
+    // canvasCurr.addEventListener("click", listenScreenTouch);
 
     return () => {
       window.removeEventListener("keydown", listenKeyboard);
-      canvasCurr.removeEventListener("click", listenScreenTouch);
+      // canvasCurr.removeEventListener("click", listenScreenTouch);
     };
     /* eslint-disable-next-line */
   }, [listenKeyboard, listenScreenTouch, state.paused]);
@@ -222,8 +222,8 @@ export const useSnake = ({ canvas, eatCallback }) => {
     return {
       data: politsList[0],
       pos: {
-        x: Math.round(Math.random() * (((width + state.snakeW) - 2 * state.snakeW) / state.snakeW)),
-        y: Math.round(Math.random() * (((height + state.snakeH) - 2 * state.snakeH) / state.snakeH))
+        x: Math.round(Math.random() * (((width + state.snakeW) - 3 * state.snakeW) / state.snakeW)),
+        y: Math.round(Math.random() * (((height + state.snakeH) - 3 * state.snakeH) / state.snakeH))
       }
     };
   }
