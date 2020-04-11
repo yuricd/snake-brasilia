@@ -1,15 +1,14 @@
 import React from "react";
 import styles from "./EndScreen.module.scss";
 import Overlay from "../Overlay/Overlay";
-import thinSnake from '../../assets/images/snake-fat-thin.png';
-import mediumSnake from '../../assets/images/snake-fat-medium.png';
-import largeSnake from '../../assets/images/snake-fat-large.png';
+import thinSnake from '../../assets/images/snake-fat-thin.svg';
+import mediumSnake from '../../assets/images/snake-fat-medium.svg';
+import largeSnake from '../../assets/images/snake-fat-large.svg';
 
 import { getRand } from "../../utils/Utils";
 
 function EndScreen({ score, maw }) {
 
-  console.log(maw);
   const player = new Audio();
 
   return (
@@ -51,10 +50,12 @@ function EndScreen({ score, maw }) {
 
   function playAudios() {
     const randPolit = getRand(maw);
-    const randAudio = getRand(randPolit.audios);
-    const file = require(`../../assets/audios/${randPolit.id}/${randAudio}`);
-    player.src = file;
-    player.play();
+    if(randPolit.audios) {
+      const randAudio = getRand(randPolit.audios);
+      const file = require(`../../assets/audios/${randPolit.id}/${randAudio}`);
+      player.src = file;
+      player.play();
+    }
   }
 }
 

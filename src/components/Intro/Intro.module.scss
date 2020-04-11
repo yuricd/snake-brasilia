@@ -38,10 +38,10 @@ $font-size: 15px;
     margin-bottom: 1em;
     
     &.highlight {
-      background: $dark-yellow;
+      background: url('../../assets/images/background-dark-yellow.png') no-repeat;
+      background-size: 100% 100%;
       padding: 8px;
       border-radius: 5px;
-      box-shadow: 1px 1px 0px $shadow-yellow;
     }
   }
 

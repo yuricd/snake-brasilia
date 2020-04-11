@@ -49,7 +49,7 @@ export const data = [
     name: "Lula (Amigo)",
     audios: ['audio1.ogg','audio2.ogg','audio3.ogg','audio4.ogg','audio5.ogg'], 
     description: [
-      "Acha que tem gente que ainda acredita nele",
+      "Ele acha que tem gente que ainda acredita nele",
       "Infelizmente ele está certo",
     ],
     skills: {

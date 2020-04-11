@@ -6,6 +6,7 @@ import Controls from "../Controls/Controls";
 import Score from "../Score/Score";
 import EndScreen from "../EndScreen/EndScreen";
 import bgMusic from "../../assets/audios/_general/bgMusic.mp3";
+import bgMaw from "../../assets/audios/_general/maw.mp3";
 import { useEffect } from "react";
 import Intro from "../Intro/Intro";
 import { sleep } from "../../utils/Utils";
@@ -52,10 +53,17 @@ function Game() {
   }, [current, score, started, finished]);
 
   useEffect(() => {
-    const bgMusic = document.getElementById("bgMusic");
-    bgMusic.volume = "0.3";
-    bgMusic.loop = true;
-  }, []);
+    const bgAudio = document.getElementById("bgAudio");
+    if (finished) {
+      bgAudio.src = bgMaw;
+      bgAudio.volume = "0.5";
+      bgAudio.play();
+    } else {
+      bgAudio.src = bgMusic;
+      bgAudio.volume = "0.5";
+    }
+    bgAudio.loop = true;
+  }, [finished]);
 
   return (
     <div>
@@ -63,8 +71,8 @@ function Game() {
 
       {finished && <EndScreen maw={maw}  score={score} />}
 
-      <audio id="bgMusic">
-        <source loop src={bgMusic} type="audio/mpeg" />
+      <audio id="bgAudio">
+        <source loop type="audio/mpeg" />
       </audio>
 
       <section className={styles.main} style={{ width: canvasWidth }}>
@@ -120,8 +128,8 @@ function Game() {
   }
 
   function playBg() {
-    const bgMusic = document.getElementById("bgMusic");
-    bgMusic.play();
+    const bgAudio = document.getElementById("bgAudio");
+    bgAudio.play();
   }
 
   async function onCloseInfoBox() {

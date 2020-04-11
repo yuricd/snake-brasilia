@@ -7,10 +7,7 @@ import { data } from "../data/politicians";
 import { shuffle } from "../utils/Shuffle";
 
 /**
- * CÓDIGO
  * AJUSTAR VOLUMES
- * PAUSAR MUSICA NO FINAL E COLOCAR SOM DE ESTOMAGO
- * FAT SNAKE BRANCA 
  */
 
 function reducer(res, newElement) {
@@ -143,9 +140,8 @@ export const useSnake = ({ canvas, eatCallback }) => {
     /* eslint-disable-next-line */
   }, []);
 
-  function drawSnake(ctx, x, y, isHead, isTail=false) {
+  function drawSnake(ctx, x, y, isHead) {
     let headImg = new Image();
-    // let tailImg = new Image();
 
     if (isHead && state.direction === Direction.RIGHT) {
       headImg.src = snakeRight;
@@ -183,44 +179,6 @@ export const useSnake = ({ canvas, eatCallback }) => {
         18,
         34
       );
-    // } 
-    // // tail
-    // else if (isTail && state.direction === Direction.RIGHT) {
-    //   tailImg.src = tailRight;
-    //   ctx.drawImage(
-    //     tailImg,
-    //     x * state.snakeW - 10,
-    //     y * state.snakeH - 3,
-    //     19,
-    //     11
-    //   );
-    // } else if (isTail && state.direction === Direction.LEFT) {
-    //   tailImg.src = tailLeft;
-    //   ctx.drawImage(
-    //     tailImg,
-    //     x * state.snakeW - 3,
-    //     y * state.snakeH - 3,
-    //     19,
-    //     11
-    //   );
-    // } else if (isTail && state.direction === Direction.UP) {
-    //   tailImg.src = tailUp;
-    //   ctx.drawImage(
-    //     tailImg,
-    //     x * state.snakeW - 3,
-    //     y * state.snakeH - 4,
-    //     11,
-    //     19
-    //   );
-    // } else if (isTail && state.direction === Direction.DOWN) {
-    //   tailImg.src = tailDown;
-    //   ctx.drawImage(
-    //     tailImg,
-    //     x * state.snakeW - 0,
-    //     y * state.snakeH - 6,
-    //     11,
-    //     19
-    //   );
     } else {
       ctx.fillStyle = "#FFB800";
       ctx.fillRect(
@@ -264,8 +222,8 @@ export const useSnake = ({ canvas, eatCallback }) => {
     return {
       data: politsList[0],
       pos: {
-        x: Math.round(Math.random() * ((width - state.snakeW) / state.snakeW)),
-        y: Math.round(Math.random() * ((height - state.snakeH) / state.snakeH))
+        x: Math.round(Math.random() * ((width - 2 * state.snakeW) / state.snakeW)),
+        y: Math.round(Math.random() * ((height - 2 * state.snakeH) / state.snakeH))
       }
     };
   }
