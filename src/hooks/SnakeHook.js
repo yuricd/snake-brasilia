@@ -76,9 +76,8 @@ export const useSnake = ({ canvas, eatCallback }) => {
   const listenScreenTouch = useCallback(e => {
     const { body, snakeW } = state;
     const head = body[0];
-    const { layerX, layerY } = e;
-    const [relX, relY] = [layerX / snakeW, layerY / snakeW];
-    alert(JSON.stringify({ head, layerX, layerY, relX, relY }));
+    const { offsetX, offsetY } = e;
+    const [relX, relY] = [offsetX / snakeW, offsetY / snakeW];
 
     if (body && !state.paused) {
       if (state.direction === Direction.RIGHT || state.direction === Direction.LEFT) {
