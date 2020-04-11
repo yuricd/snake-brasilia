@@ -6,7 +6,7 @@ import mediumSnake from '../../assets/images/snake-fat-medium.svg';
 import largeSnake from '../../assets/images/snake-fat-large.svg';
 import { data } from "../../data/politicians";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { getRand, copy2clipboard } from "../../utils/Utils";
+import { getRand } from "../../utils/Utils";
 import { APP_URL } from "../../constants/Links";
 import { useState } from "react";
 
