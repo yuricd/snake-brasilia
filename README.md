@@ -1,4 +1,4 @@
-![Snake Vai a Brasília](/public/full-logo-notmal.png)
+![Snake Vai a Brasília](/public/full-logo-normal.png)
 
 # Snake Vai a Brasília
 A famosa "cobrinha" voltou e agora irá dar umas voltas por Brasília
