@@ -297,10 +297,6 @@ export const useSnake = ({ canvas, eatCallback }) => {
     }
   }
 
-  // function removeByIndex(arr, index) {
-  //   return arr.filter((_, idx) => idx !== index);
-  // }
-
   async function getNextPolitician(width, height) {
     if (state.polits.length) {
       const [, ...rest] = state.polits;
