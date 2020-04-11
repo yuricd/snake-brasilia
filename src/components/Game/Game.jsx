@@ -38,14 +38,7 @@ function Game() {
     maw,
   } = useSnake({ canvas, eatCallback });
 
-  const heightAvailable = 5 * (window.innerHeight / 7);
-  const canvasWidth =
-    window.innerWidth > 700
-      ? 500
-      : window.innerWidth - (window.innerWidth % SNAKE_SIZE) - SNAKE_SIZE * 4;
-  const canvasHeight =
-    heightAvailable - (heightAvailable % SNAKE_SIZE) - SNAKE_SIZE * 4;
-  const bottomHeight = (2 * window.innerHeight) / 7;
+  const { canvasWidth, canvasHeight, bottomHeight } = screenConfig();
 
   useEffect(() => {
     if (paused && current?.audios && started && !finished) {
@@ -55,7 +48,8 @@ function Game() {
       )}`);
       says.play();
     }
-  }, [current, score, started, paused, finished]);
+    /* eslint-disable-next-line */
+  }, [current, score, started, finished]);
 
   useEffect(() => {
     const bgMusic = document.getElementById("bgMusic");
@@ -80,7 +74,7 @@ function Game() {
             ref={canvas}
             width={canvasWidth}
             height={canvasHeight}
-          ></canvas>
+          />
 
           {showCountdown && <Countdown />}
         </section>
@@ -91,9 +85,11 @@ function Game() {
           styles={{ height: bottomHeight }}
         >
           <Score score={score} />
+          
           <button onClick={() => setPaused(!paused)}>
             <i className="fas fa-pause" />
           </button>
+          
           <Controls clickHandler={listenJoystickClick} />
         </section>
       </section>
@@ -103,6 +99,19 @@ function Game() {
       )}
     </div>
   );
+
+  function screenConfig() {
+    const heightAvailable = 5 * (window.innerHeight / 7);
+    const canvasWidth =
+      window.innerWidth > 700
+        ? 500
+        : window.innerWidth - (window.innerWidth % SNAKE_SIZE) - SNAKE_SIZE * 4;
+    const canvasHeight =
+      heightAvailable - (heightAvailable % SNAKE_SIZE) - SNAKE_SIZE * 4;
+    const bottomHeight = (2 * window.innerHeight) / 7;
+
+    return { canvasWidth, canvasHeight, bottomHeight };
+  }
 
   function onClose() {
     setShowIntro(false);

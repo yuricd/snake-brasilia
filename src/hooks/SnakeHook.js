@@ -9,7 +9,8 @@ import { shuffle } from "../utils/Shuffle";
 /**
  * CÓDIGO
  * AJUSTAR VOLUMES
- * 
+ * PAUSAR MUSICA NO FINAL E COLOCAR SOM DE ESTOMAGO
+ * FAT SNAKE BRANCA 
  */
 
 function reducer(res, newElement) {
@@ -27,17 +28,11 @@ export const Direction = {
 }
 
 export const useSnake = ({ canvas, eatCallback }) => {
-  let cpBody = [];
 
-  for (let i = 2; i >= 0; i--) {
-    cpBody.push({
-      x: i,
-      y: 10
-    });
-  }
+  const initiY = 10; 
 
   const init = {
-    body: cpBody,
+    body: new Array(3).fill(0).map((_, idx) => ({ x: idx, y: initiY })).reverse(),
     direction: Direction.RIGHT,
     score: 0,
     snakeW: 7,
@@ -254,7 +249,6 @@ export const useSnake = ({ canvas, eatCallback }) => {
     return false;
   }
 
-
   function checkProximity(snakeHead, pos) {
     const [headX, headY] = snakeHead;
     const { x, y } = pos;
@@ -266,7 +260,6 @@ export const useSnake = ({ canvas, eatCallback }) => {
     }
   }
 
-
   function getPolit(width, height, politsList = state.polits) {
     return {
       data: politsList[0],
@@ -277,12 +270,17 @@ export const useSnake = ({ canvas, eatCallback }) => {
     };
   }
 
-  function drawPolit(ctx, renderImg, x, y) {
+  function drawPolit(ctx, current) {
+    const { pos, data } = current;
+    const { x,y  } = pos;
+
+    let renderImg = new Image();
+    renderImg.src = require(`../assets/politicians/${data.id}.jpg`);
+    
     ctx.shadowOffsetX = 0;
     ctx.shadowOffsetY = 0;
     ctx.shadowBlur = 1;
     ctx.shadowColor = "rgba(255, 255, 255, 1)";
-    console.log(`render on ${x * state.snakeW - 1}, ${y * state.snakeH - 1}`)
     ctx.drawImage(
       renderImg,
       x * state.snakeW - 1,
@@ -305,9 +303,7 @@ export const useSnake = ({ canvas, eatCallback }) => {
         drawSnake(ctx, x, y, i === 0);
       }
       
-      let renderImg = new Image();
-      renderImg.src = require(`../assets/politicians/${state.current.data.id}.jpg`);
-      drawPolit(ctx, renderImg, state.current.pos.x, state.current.pos.y);
+      drawPolit(ctx, state.current);
 
       let snakeHeadX = state.body[0].x;
       let snakeHeadY = state.body[0].y;
@@ -328,8 +324,7 @@ export const useSnake = ({ canvas, eatCallback }) => {
 
       if (proximity === 0) {
         const sumScore = state.score + 1;
-        setState({ maw: state.maw.concat(state.current.data) });
-        setState({ paused: true, score: sumScore, speed: state.speed-1 });
+        setState({ maw: state.maw.concat(state.current.data), paused: true, score: sumScore, speed: state.speed-1 });
         eatCallback();
       } else {
         state.body.pop();
