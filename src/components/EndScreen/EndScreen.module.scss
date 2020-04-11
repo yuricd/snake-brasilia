@@ -1,3 +1,5 @@
+@import '../../styles/colors.scss';
+
 .endScreen {
   z-index: 11;
   position: absolute;
@@ -19,7 +21,7 @@
 
 .shareButtons {
   display: flex;
-  margin: 1em 0;
+  margin: 1em 0 0;
   justify-content: space-around;
   flex-wrap: wrap;
 
@@ -29,12 +31,23 @@
 }
 
 .bottom {
-  margin-top: 2em;
   button {
     margin-bottom: 10px;
   }
 
   p {
     font-size: 50%;
+  }
+}
+
+.fatSnake {
+  margin: 1em 0;
+
+  figure img {
+    width: auto;
+    background: $dark-yellow;
+    padding: 8px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 0px $shadow-yellow;
   }
 }

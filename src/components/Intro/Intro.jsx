@@ -8,7 +8,7 @@ function Intro({ onClose }) {
     <>
       <Overlay />
       <div className={styles.intro}>
-        <h1>Snake vai à Brasília</h1>
+        <h1>Snake vai a Brasília</h1>
 
         <section className={styles.highlight}>
           <p>Controles</p>

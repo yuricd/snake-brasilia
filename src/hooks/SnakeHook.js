@@ -1,16 +1,13 @@
 import { useEffect, useReducer, useLayoutEffect, useCallback } from "react";
-import snakeRight from "../assets/images/snake-head-right.png";
-import snakeDown from "../assets/images/snake-head-down.png";
-import snakeLeft from "../assets/images/snake-head-left.png";
-import snakeUp from "../assets/images/snake-head-up.png";
+import snakeRight from "../assets/images/snake-head-right.svg";
+import snakeDown from "../assets/images/snake-head-down.svg";
+import snakeLeft from "../assets/images/snake-head-left.svg";
+import snakeUp from "../assets/images/snake-head-up.svg";
 import { data } from "../data/politicians";
 import { shuffle } from "../utils/Shuffle";
 
 /**
- * ADICIONAR SOM QUANDO PASSA PERTO
- * PRIMEIRA EXECUÇÃO DE AUDIO
- * TEMPO AO VOLTAR DA INFOBOX
- * BARRIGA DA COBRA NO FINAL
+ * CÓDIGO
  * AJUSTAR VOLUMES
  * 
  */
@@ -50,21 +47,22 @@ export const useSnake = ({ canvas, eatCallback }) => {
     control: Direction.UP,
     finished: false,
     speed: 60,
+    maw: [],
   };
 
   const [state, setState] = useReducer(reducer, init);
 
   const listenKeyboard = useCallback(
     e => {
-      if (e.keyCode === 37 && state.direction !== Direction.RIGHT) {
+      if ([37,65].includes(e.keyCode) && state.direction !== Direction.RIGHT) {
         setState({ direction: Direction.LEFT });
-      } else if (e.keyCode === 38 && state.direction !== Direction.DOWN) {
+      } else if ([38,87].includes(e.keyCode) && state.direction !== Direction.DOWN) {
         setState({ direction: Direction.UP });
-      } else if (e.keyCode === 39 && state.direction !== Direction.LEFT) {
+      } else if ([39, 68].includes(e.keyCode) && state.direction !== Direction.LEFT) {
         setState({ direction: Direction.RIGHT });
-      } else if (e.keyCode === 40 && state.direction !== Direction.UP) {
+      } else if ([40, 83].includes(e.keyCode) && state.direction !== Direction.UP) {
         setState({ direction: Direction.DOWN });
-      } else if (e.keyCode === 80) {
+      } else if ([80].includes(e.keyCode)) {
         setState({ paused: !state.paused });
       }
     },
@@ -107,17 +105,20 @@ export const useSnake = ({ canvas, eatCallback }) => {
       }
     }
   }, 
+    /* eslint-disable-next-line */
     [state.direction, state.body]
   );
 
   useEffect(() => {
+    const canvasCurr = canvas.current;
     window.addEventListener("keydown", listenKeyboard);
-    canvas.current.addEventListener("click", listenScreenTouch);
+    canvasCurr.addEventListener("click", listenScreenTouch);
 
     return () => {
       window.removeEventListener("keydown", listenKeyboard);
-      canvas.current.removeEventListener("click", listenScreenTouch);
+      canvasCurr.removeEventListener("click", listenScreenTouch);
     };
+    /* eslint-disable-next-line */
   }, [listenKeyboard, listenScreenTouch, state.paused]);
 
   useLayoutEffect(() => {
@@ -147,19 +148,20 @@ export const useSnake = ({ canvas, eatCallback }) => {
     /* eslint-disable-next-line */
   }, []);
 
-  function drawSnake(ctx, x, y, head) {
+  function drawSnake(ctx, x, y, isHead, isTail=false) {
     let headImg = new Image();
+    // let tailImg = new Image();
 
-    if (head && state.direction === Direction.RIGHT) {
+    if (isHead && state.direction === Direction.RIGHT) {
       headImg.src = snakeRight;
       ctx.drawImage(
         headImg,
-        x * state.snakeW - 2,
+        x * state.snakeW - 4,
         y * state.snakeH - 8,
         34,
         18
       );
-    } else if (head && state.direction === Direction.LEFT) {
+    } else if (isHead && state.direction === Direction.LEFT) {
       headImg.src = snakeLeft;
       ctx.drawImage(
         headImg,
@@ -168,7 +170,7 @@ export const useSnake = ({ canvas, eatCallback }) => {
         34,
         18
       );
-    } else if (head && state.direction === Direction.UP) {
+    } else if (isHead && state.direction === Direction.UP) {
       headImg.src = snakeUp;
       ctx.drawImage(
         headImg,
@@ -177,15 +179,53 @@ export const useSnake = ({ canvas, eatCallback }) => {
         18,
         34
       );
-    } else if (head && state.direction === Direction.DOWN) {
+    } else if (isHead && state.direction === Direction.DOWN) {
       headImg.src = snakeDown;
       ctx.drawImage(
         headImg,
         x * state.snakeW - 3,
-        y * state.snakeH - 2,
+        y * state.snakeH - 3,
         18,
         34
       );
+    // } 
+    // // tail
+    // else if (isTail && state.direction === Direction.RIGHT) {
+    //   tailImg.src = tailRight;
+    //   ctx.drawImage(
+    //     tailImg,
+    //     x * state.snakeW - 10,
+    //     y * state.snakeH - 3,
+    //     19,
+    //     11
+    //   );
+    // } else if (isTail && state.direction === Direction.LEFT) {
+    //   tailImg.src = tailLeft;
+    //   ctx.drawImage(
+    //     tailImg,
+    //     x * state.snakeW - 3,
+    //     y * state.snakeH - 3,
+    //     19,
+    //     11
+    //   );
+    // } else if (isTail && state.direction === Direction.UP) {
+    //   tailImg.src = tailUp;
+    //   ctx.drawImage(
+    //     tailImg,
+    //     x * state.snakeW - 3,
+    //     y * state.snakeH - 4,
+    //     11,
+    //     19
+    //   );
+    // } else if (isTail && state.direction === Direction.DOWN) {
+    //   tailImg.src = tailDown;
+    //   ctx.drawImage(
+    //     tailImg,
+    //     x * state.snakeW - 0,
+    //     y * state.snakeH - 6,
+    //     11,
+    //     19
+    //   );
     } else {
       ctx.fillStyle = "#FFB800";
       ctx.fillRect(
@@ -214,12 +254,25 @@ export const useSnake = ({ canvas, eatCallback }) => {
     return false;
   }
 
+
+  function checkProximity(snakeHead, pos) {
+    const [headX, headY] = snakeHead;
+    const { x, y } = pos;
+    if (headX === x && headY === y) {
+      return 0;
+    } else {
+      const maxVal = Math.max(x - headX, y - headY);
+      return maxVal > 0 ? maxVal : 1  ;
+    }
+  }
+
+
   function getPolit(width, height, politsList = state.polits) {
     return {
       data: politsList[0],
       pos: {
-        x: Math.round(Math.random() * (width / state.snakeW)),
-        y: Math.round(Math.random() * (height / state.snakeH))
+        x: Math.round(Math.random() * ((width - state.snakeW) / state.snakeW)),
+        y: Math.round(Math.random() * ((height - state.snakeH) / state.snakeH))
       }
     };
   }
@@ -229,7 +282,7 @@ export const useSnake = ({ canvas, eatCallback }) => {
     ctx.shadowOffsetY = 0;
     ctx.shadowBlur = 1;
     ctx.shadowColor = "rgba(255, 255, 255, 1)";
-    // console.log(`render on ${x * state.snakeW - 1}, ${y * state.snakeH - 1}`)
+    console.log(`render on ${x * state.snakeW - 1}, ${y * state.snakeH - 1}`)
     ctx.drawImage(
       renderImg,
       x * state.snakeW - 1,
@@ -242,7 +295,6 @@ export const useSnake = ({ canvas, eatCallback }) => {
 
   async function draw(ctx, width, height) {
     if (!state.current?.data) {
-      console.log("end");
       setState({ finished: true });
     } else {
       ctx.clearRect(0, 0, width, height);
@@ -272,18 +324,18 @@ export const useSnake = ({ canvas, eatCallback }) => {
         snakeHeadY++;
       }
 
-      if (
-        snakeHeadX === state.current.pos.x &&
-        snakeHeadY === state.current.pos.y
-      ) {
+      const proximity = checkProximity([snakeHeadX, snakeHeadY], state.current.pos);
+
+      if (proximity === 0) {
         const sumScore = state.score + 1;
+        setState({ maw: state.maw.concat(state.current.data) });
         setState({ paused: true, score: sumScore, speed: state.speed-1 });
-        eatCallback(sumScore);
+        eatCallback();
       } else {
         state.body.pop();
       }
 
-      let newHead = {
+      const newHead = {
         x: snakeHeadX,
         y: snakeHeadY
       };
@@ -291,6 +343,10 @@ export const useSnake = ({ canvas, eatCallback }) => {
       setState({ body: [newHead].concat(state.body) });
     }
   }
+
+  // function removeByIndex(arr, index) {
+  //   return arr.filter((_, idx) => idx !== index);
+  // }
 
   async function getNextPolitician(width, height) {
     if (state.polits.length) {
@@ -322,5 +378,6 @@ export const useSnake = ({ canvas, eatCallback }) => {
     paused: state.paused,
     score: state.score,
     nextPolitician,
+    maw: state.maw,
   };
 };
