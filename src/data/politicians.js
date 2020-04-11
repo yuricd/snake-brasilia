@@ -445,7 +445,7 @@ export const data = [
       "A versão chata do João Plenário",
     ],
     skills: {
-      "Desmistificação caixa 2": "8",
+      "Desmistificação do caixa 2": "8",
       "Suspender investigações": "9",
       "Libertar bandido": "9",
     },
