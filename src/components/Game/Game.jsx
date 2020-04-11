@@ -1,13 +1,12 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import styles from "./Game.module.scss";
 import { useSnake } from "../../hooks/SnakeHook";
 import InfoBox from "../InfoBox/InfoBox";
 import Controls from "../Controls/Controls";
 import Score from "../Score/Score";
 import EndScreen from "../EndScreen/EndScreen";
-import bgMusic from "../../assets/audios/_general/bgMusic.mp3";
-import bgMaw from "../../assets/audios/_general/maw.mp3";
-import { useEffect } from "react";
+import bgMusic from "../../assets/audios/_general/background-music.ogg";
+import bgMaw from "../../assets/audios/_general/background-maw.ogg";
 import Intro from "../Intro/Intro";
 import { sleep } from "../../utils/Utils";
 import Countdown from "../Countdown/Countdown";
@@ -56,7 +55,7 @@ function Game() {
     const bgAudio = document.getElementById("bgAudio");
     if (finished) {
       bgAudio.src = bgMaw;
-      bgAudio.volume = "0.5";
+      bgAudio.volume = "0.3";
       bgAudio.play();
     } else {
       bgAudio.src = bgMusic;
@@ -69,7 +68,7 @@ function Game() {
     <div>
       {showIntro && <Intro onClose={onClose} />}
 
-      {finished && <EndScreen maw={maw}  score={score} />}
+      {finished && <EndScreen maw={maw} score={score} />}
 
       <audio id="bgAudio">
         <source loop type="audio/mpeg" />
@@ -92,18 +91,22 @@ function Game() {
           className={styles.bottom}
           styles={{ height: bottomHeight }}
         >
-          <Score score={score} />
-          
-          <button onClick={() => setPaused(!paused)}>
-            <i className="fas fa-pause" />
-          </button>
-          
+          <div className={styles.leSide}>
+            <button
+              className={styles.pauseBtn}
+              onClick={() => setPaused(!paused)}
+            >
+              <i className="fas fa-pause" />
+            </button>
+            <Score score={score} />
+          </div>
+
           <Controls clickHandler={listenJoystickClick} />
         </section>
       </section>
 
       {showInfoBox && current && (
-        <InfoBox data={current}continueCallback={onCloseInfoBox} />
+        <InfoBox data={current} continueCallback={onCloseInfoBox} />
       )}
     </div>
   );

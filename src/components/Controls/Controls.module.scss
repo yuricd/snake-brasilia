@@ -1,5 +1,7 @@
+@import '../../styles/colors.scss';
 
 $button-size: 42px;
+
 .controls {
   display: grid;
   grid-template-columns: [leftCol] $button-size [centerCol] $button-size [rightCol] $button-size;
@@ -15,7 +17,7 @@ $button-size: 42px;
 .item button {
   padding: 0;
   background: none;
-  color: #FFB800;
+  color: $yellow;
   font-size: 2.7rem;
   text-align: center;
   margin: -5px 1px;

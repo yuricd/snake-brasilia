@@ -1,3 +1,5 @@
+@import '../../styles/colors.scss'; 
+
 .main {
   position: relative;
   height: 100vh;
@@ -26,4 +28,22 @@
   justify-content: space-between;
   align-items: center;
   height: 100%;
+}
+
+.leSide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.pauseBtn {
+  background: $yellow;
+  border-radius: 8px;
+  margin-bottom: 2em;
+  width: 50px;
+
+  i {
+    color:transparentize($color: #000000, $amount: .1);
+  }
 }

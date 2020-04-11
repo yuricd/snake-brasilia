@@ -18,7 +18,7 @@ export const data = [
   {
     id: "jean-wyllys",
     name: "Jean Wyllys",
-    audios: ['audio1.ogg','audio2.ogg','audio3.ogg'],
+    audios: ['audio-001.ogg','audio-002.ogg','audio-003.ogg'],
     description: [
       "Ganhador do BBB e ex-deputado federal",
       "Acha que deputado ganha pouco (sic)",
@@ -33,7 +33,7 @@ export const data = [
   {
     id: "dilma",
     name: "Dilma",
-    audios: ['audio1.ogg','audio2.ogg','audio3.ogg','audio4.ogg','audio5.ogg','audio6.ogg','audio7.ogg','audio8.ogg'],
+    audios: ['audio-001.ogg','audio-002.ogg','audio-003.ogg','audio-004.ogg','audio-005.ogg','audio-006.ogg','audio-007.ogg','audio-008.ogg'],
     description: [
       "Poste número 1 do PT",
       "Famosa por seu raciocínio lógico impecável",
@@ -170,8 +170,8 @@ export const data = [
   },
   {
     id: "haddad",
-    name: "Fernando Haddad (corrigir audio)",
-    audios: ['audio-001.ogg','audio-002.ogg'],
+    name: "Fernando Haddad",
+    audios: ['audio.ogg'],
     description: [
       "Poste número 2 do PT",
     ],
@@ -225,7 +225,7 @@ export const data = [
   {
     id: "michel-temer",
     name: "Michel Temer",
-    audios: ['audio-001.ogg','audio-002.ogg'],
+    audios: ['audio-001.ogg'],
     description: [
       "É tão vampiro que na eleição de 2014 ninguém viu sua foto na urna",
     ],
@@ -236,7 +236,7 @@ export const data = [
     },
   },
   {
-    id: "renanc-calheiros",
+    id: "renan-calheiros",
     name: "Renan Calheiros (Justiça)",
     audios: ['audio.ogg'],
     description: [
@@ -264,13 +264,14 @@ export const data = [
   {
     id: "marcos-pontes",
     name: "Marcos Pontes",
+    audios: ['audio-001.ogg','audio-002.ogg','audio-003.ogg','audio-004.ogg','audio-005.ogg','audio-006.ogg','audio-007.ogg'],
     description: [
       "A gente achava que a coisa mais insana que ele tinha feito era ir ao espaço",
       "Aí ele se aliou ao Bolsonaro",
     ],
     skills: {
       "Engenharia": "10",
-      "Piloto": "10",
+      "Amizade": "10",
       "Alinhamento com o chefe": "6",
     },
   },
@@ -291,14 +292,14 @@ export const data = [
   {
     id: "lindbergh",
     name: "Lindbergh Farias (Feio ou Lindinho)",
-    audios: ['audio-001.ogg','audio-002.ogg','audio-003.ogg'],
+    audios: ['audio-001.ogg','audio-002.ogg'],
     description: [
       "Foi líder estudantil mas nunca se formou; votou contra a prisão de Delcídio do Amaral que acabou sendo preso; tentou conquistar a Gleisi e conseguiu",
       "É um homem de muita má sorte…",
     ],
     skills: {
       "Desespero": "8",
-      "Falar grosso": "5",
+      "Engrossar a voz": "5",
       "Beijar mão de bêbado": "10",
     },
   },

@@ -222,8 +222,8 @@ export const useSnake = ({ canvas, eatCallback }) => {
     return {
       data: politsList[0],
       pos: {
-        x: Math.round(Math.random() * ((width - 2 * state.snakeW) / state.snakeW)),
-        y: Math.round(Math.random() * ((height - 2 * state.snakeH) / state.snakeH))
+        x: Math.round(Math.random() * (((width + state.snakeW) - 2 * state.snakeW) / state.snakeW)),
+        y: Math.round(Math.random() * (((height + state.snakeH) - 2 * state.snakeH) / state.snakeH))
       }
     };
   }

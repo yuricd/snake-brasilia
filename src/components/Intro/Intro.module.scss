@@ -1,7 +1,6 @@
 @import '../../styles/animations.scss';
 @import '../../styles/colors.scss';
 
-
 $font-size: 15px;
 
 .overlay {
@@ -18,7 +17,7 @@ $font-size: 15px;
   z-index: 11;
   position: absolute;
   left: 50%;
-  top: 4em;
+  top: 3em;
   transform: translateX(-50%);
   width: 80vw;
   max-width: 500px;
