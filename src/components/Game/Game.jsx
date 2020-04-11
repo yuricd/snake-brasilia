@@ -88,16 +88,28 @@ function Game() {
         <section
           id="bottom"
           className={styles.bottom}
-          styles={{ height: bottomHeight }}
+          style={{ height: bottomHeight }}
         >
           <div className={styles.leSide}>
-            <button
-              className={styles.pauseBtn}
-              onClick={() => setPaused(!paused)}
-            >
-              <i className="fas fa-pause" />
-            </button>
             <Score score={score} />
+
+            <nav>
+              <button
+                className={styles.githubBtn}
+                onClick={() => setPaused(!paused)}
+              >
+                <a href="https://github.com/yuricd/snake-brasilia" target="_blank" rel="noopener noreferrer">
+                  <i className="fab fa-github" />
+                </a>
+              </button>
+
+              <button
+                className={styles.pauseBtn}
+                onClick={() => setPaused(!paused)}
+              >
+                <i className="fas fa-pause" />
+              </button>
+            </nav>
           </div>
 
           <Controls clickHandler={listenJoystickClick} />

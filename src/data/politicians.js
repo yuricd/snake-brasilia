@@ -211,7 +211,7 @@ export const data = [
   {
     id: "sergio-moro",
     name: "Sérgio Moro",
-    audios: ['audio-001.ogg','audio-002.ogg','audio-003.ogg','audio-004.ogg'],
+    audios: ['audio-001.ogg','audio-002.ogg','audio-003.ogg'],
     description: [
       "Mais eficiente que Loperamida",
       "BFF do Lula",

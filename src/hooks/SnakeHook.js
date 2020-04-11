@@ -102,13 +102,13 @@ export const useSnake = ({ canvas, eatCallback }) => {
   );
 
   useEffect(() => {
-    // const canvasCurr = canvas.current;
+    const canvasCurr = canvas.current;
     window.addEventListener("keydown", listenKeyboard);
-    // canvasCurr.addEventListener("click", listenScreenTouch);
+    canvasCurr.addEventListener("click", listenScreenTouch);
 
     return () => {
       window.removeEventListener("keydown", listenKeyboard);
-      // canvasCurr.removeEventListener("click", listenScreenTouch);
+      canvasCurr.removeEventListener("click", listenScreenTouch);
     };
     /* eslint-disable-next-line */
   }, [listenKeyboard, listenScreenTouch, state.paused]);

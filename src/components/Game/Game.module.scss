@@ -25,23 +25,39 @@
 .bottom {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  height: 100%;
+  justify-content: space-around;
+  align-items: flex-start;
 }
 
 .leSide {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
+  margin-top: 10px;
+
+  nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
 }
 
 .pauseBtn {
   background: $yellow;
-  border-radius: 8px;
-  margin-bottom: 2em;
-  width: 50px;
+  border-radius: 3px;
+  margin-top: 1em;
+
+  i {
+    color:transparentize($color: #000000, $amount: .1);
+  }
+}
+
+.githubBtn {
+  background: $yellow;
+  border-radius: 3px;
+  margin: 1em 0 0 0;
 
   i {
     color:transparentize($color: #000000, $amount: .1);
