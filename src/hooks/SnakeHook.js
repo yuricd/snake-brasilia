@@ -38,7 +38,7 @@ export const useSnake = ({ canvas, eatCallback }) => {
     paused: true,
     control: Direction.UP,
     finished: false,
-    speed: 60,
+    speed: 70,
     maw: [],
   };
 
