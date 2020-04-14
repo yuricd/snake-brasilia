@@ -39,6 +39,16 @@ function Game() {
 
   const { canvasWidth, canvasHeight, bottomHeight } = screenConfig();
 
+  const listenKeyboard = useCallback(async e => {
+    if ([32].includes(e.keyCode) && showInfoBox) {
+      setShowInfoBox(false);
+      setShowCountdown(true);
+      await sleep(0.9 * 1000);
+      setShowCountdown(false);
+      nextPolitician();
+    }
+  }, [showInfoBox, nextPolitician]);
+
   useEffect(() => {
     if (paused && current?.audios && started && !finished) {
       const says = new Audio();
@@ -62,6 +72,14 @@ function Game() {
     }
     bgAudio.loop = true;
   }, [finished]);
+
+  useEffect(() => {
+    window.addEventListener("keydown", listenKeyboard);
+
+    return () => {
+      window.removeEventListener("keydown", listenKeyboard);
+    };
+  }, [listenKeyboard]);
 
   return (
     <div>

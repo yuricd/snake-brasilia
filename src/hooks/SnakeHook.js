@@ -6,10 +6,6 @@ import snakeUp from "../assets/images/snake-head-up.svg";
 import { data } from "../data/politicians";
 import { shuffle } from "../utils/Shuffle";
 
-/**
- * AJUSTAR VOLUMES
- */
-
 function reducer(res, newElement) {
   return {
     ...res,
